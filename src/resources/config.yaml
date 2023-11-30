@@ -1,0 +1,2 @@
+IItemInput: 'main.java.models.extsystems.adaptors.ItemInputAdaptor1'
+RecommendationPolicy: 'HistoryBasedRecomPolicy'
