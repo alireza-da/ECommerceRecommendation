@@ -1,11 +1,14 @@
 package main.java.models;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class User {
     private String name;
-    private PurchaseList purchaseHistory;
+    private ArrayList<PurchaseList> purchaseHistory;
     private List<Review> reviews;
+    private int ID;
+
 
     public String getName() {
         return name;
@@ -15,11 +18,11 @@ public class User {
         this.name = name;
     }
 
-    public PurchaseList getPurchaseHistory() {
+    public ArrayList<PurchaseList> getPurchaseHistory() {
         return purchaseHistory;
     }
 
-    public void setPurchaseHistory(PurchaseList purchaseHistory) {
+    public void setPurchaseHistory(ArrayList<PurchaseList> purchaseHistory) {
         this.purchaseHistory = purchaseHistory;
     }
 
@@ -32,6 +35,11 @@ public class User {
     }
 
     public User(String name) {
+        this.ID = System.identityHashCode(this);
         this.name = name;
+    }
+
+    public int getID() {
+        return ID;
     }
 }

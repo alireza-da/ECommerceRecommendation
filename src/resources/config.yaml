@@ -1,2 +1,5 @@
-IItemInput: 'main.java.models.extsystems.adaptors.ItemInputAdaptor1'
-RecommendationPolicy: 'HistoryBasedRecomPolicy'
+IItemInput: 'main.java.models.extsystems.adaptors.ItemInputTUIAdaptor'
+IRecommendationPolicy: 'main.java.models.policies.HistoryBasedRecomPolicy'
+Items: [
+         "Bread", "Milk", "Egg"
+]

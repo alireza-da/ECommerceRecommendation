@@ -1,10 +1,29 @@
 package main.java.models;
 
-import java.util.List;
-import java.util.Objects;
+import java.util.*;
 
 public class ItemCat {
-    private List<Item> itemList;
+    private static ItemCat instance;
+    private final List<Item> itemList;
+    private int ID;
+
+    public int getID() {
+        return ID;
+    }
+
+    public void setID(int ID) {
+        this.ID = ID;
+    }
+    public static ItemCat getInstance() {
+        if(instance == null){
+            instance = new ItemCat();
+        }
+        return instance;
+    }
+
+    public ItemCat() {
+        this.itemList = new ArrayList<Item>();
+    }
 
     public List<Item> getItemList() {
         return itemList;

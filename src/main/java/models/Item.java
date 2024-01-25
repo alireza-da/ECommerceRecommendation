@@ -2,13 +2,27 @@ package main.java.models;
 
 import java.math.BigInteger;
 import java.util.Date;
+import java.util.List;
 
 public class Item {
     private String name;
-    private BigInteger price;
-    private Integer discount;
-    private Integer quantity;
-    private Date dateAdded;
+    private List<ItemDesc> itemDescs;
+    private int ID;
+
+    public int getID() {
+        return ID;
+    }
+
+    public void setID(int ID) {
+        this.ID = ID;
+    }
+    public List<ItemDesc> getItemDescs() {
+        return itemDescs;
+    }
+
+    public void setItemDescs(List<ItemDesc> itemDescs) {
+        this.itemDescs = itemDescs;
+    }
 
     public String getName() {
         return name;
@@ -18,43 +32,4 @@ public class Item {
         this.name = name;
     }
 
-    public BigInteger getPrice() {
-        return price;
-    }
-
-    public void setPrice(BigInteger price) {
-        this.price = price;
-    }
-
-    public Integer getDiscount() {
-        return discount;
-    }
-
-    public void setDiscount(Integer discount) {
-        this.discount = discount;
-    }
-
-    public Integer getQuantity() {
-        return quantity;
-    }
-
-    public void setQuantity(Integer quantity) {
-        this.quantity = quantity;
-    }
-
-    public Date getDateAdded() {
-        return dateAdded;
-    }
-
-    public void setDateAdded(Date dateAdded) {
-        this.dateAdded = dateAdded;
-    }
-
-    public Item(String name, BigInteger price, Integer discount, Integer quantity, Date dateAdded) {
-        this.name = name;
-        this.price = price;
-        this.discount = discount;
-        this.quantity = quantity;
-        this.dateAdded = dateAdded;
-    }
 }

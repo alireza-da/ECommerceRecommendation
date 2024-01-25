@@ -4,8 +4,9 @@ import com.esotericsoftware.yamlbeans.YamlException;
 import main.java.config.Config;
 import main.java.logger.Logger;
 import main.java.models.ECommerceController;
+import main.java.models.ItemCat;
 import main.java.models.extsystems.adaptors.IItemInput;
-import main.java.models.extsystems.adaptors.ItemInputAdaptor1;
+import main.java.models.extsystems.adaptors.ItemInputTUIAdaptor;
 import main.java.models.policies.IRecommendationPolicy;
 
 import java.io.FileNotFoundException;
@@ -14,12 +15,21 @@ import java.lang.reflect.InvocationTargetException;
 import java.util.logging.Level;
 
 public class Factory {
-    private static IItemInput itemInputAdaptor;
-    private static IRecommendationPolicy recommendationPolicy;
-    private static ECommerceController eCommerceController;
-    private static Config config;
-    private static Logger logger;
-    public static IItemInput getItemInputAdaptor() throws YamlException, FileNotFoundException, ClassNotFoundException {
+    private static Factory instance;
+
+    public static Factory getInstance() {
+        if(instance == null){
+            instance = new Factory();
+        }
+        return instance;
+    }
+
+    private  IItemInput itemInputAdaptor;
+    private  IRecommendationPolicy recommendationPolicy;
+    private  ECommerceController eCommerceController;
+    private  Config config;
+    private  Logger logger;
+    public  IItemInput getItemInputAdaptor() throws YamlException, FileNotFoundException, ClassNotFoundException {
         if(itemInputAdaptor == null){
             // TODO: -add adaptor
             String className = (String) config.readAsObject(IItemInput.class.getSimpleName());
@@ -35,20 +45,30 @@ public class Factory {
         }
         return itemInputAdaptor;
     }
-    public static IRecommendationPolicy getRecommendationPolicy(){
+    public IRecommendationPolicy getRecommendationPolicy() throws YamlException, FileNotFoundException, ClassNotFoundException, NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
+        if(recommendationPolicy == null){
+            if(config != null) {
+                recommendationPolicy = (IRecommendationPolicy)
+                        Class.forName(String.valueOf(config.readAsObject(IRecommendationPolicy.class.getSimpleName())))
+                                .getConstructor().newInstance();
+            }
+        }
         return recommendationPolicy;
     }
-    public static ECommerceController getECommerceController(){
+    public ECommerceController getECommerceController(){
+        if(eCommerceController == null){
+            eCommerceController = ECommerceController.getInstance();
+        }
         return eCommerceController;
     }
-    public static Config getConfig() throws YamlException, FileNotFoundException {
+    public Config getConfig() throws YamlException, FileNotFoundException {
         if(config == null){
             config = new Config();
             config.load();
         }
         return config;
     }
-    public static Logger getLogger(){
+    public Logger getLogger(){
         if(logger == null){
             logger = new Logger();
         }

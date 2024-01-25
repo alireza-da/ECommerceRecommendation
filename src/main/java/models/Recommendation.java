@@ -1,12 +1,21 @@
 package main.java.models;
 
+import java.time.LocalDateTime;
 import java.util.Date;
 import java.util.List;
 
 public class Recommendation {
     private List<Item> items;
-    private Date date;
+    private LocalDateTime date;
+    private int ID;
 
+    public int getID() {
+        return ID;
+    }
+
+    public void setID(int ID) {
+        this.ID = ID;
+    }
     public List<Item> getItems() {
         return items;
     }
@@ -15,15 +24,15 @@ public class Recommendation {
         this.items = items;
     }
 
-    public Date getDate() {
+    public LocalDateTime getDate() {
         return date;
     }
 
-    public void setDate(Date date) {
+    public void setDate(LocalDateTime date) {
         this.date = date;
     }
 
-    public Recommendation(List<Item> items, Date date) {
+    public Recommendation(List<Item> items, LocalDateTime date) {
         this.items = items;
         this.date = date;
     }

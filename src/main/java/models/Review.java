@@ -4,6 +4,16 @@ public class Review {
     private int rating;
     private String description;
 
+    private int ID;
+
+    public int getID() {
+        return ID;
+    }
+
+    public void setID(int ID) {
+        this.ID = ID;
+    }
+
     public Review(int rating, String description) {
         this.rating = rating;
         this.description = description;
