@@ -18,7 +18,9 @@ public class HistoryBasedRecomPolicy implements IRecommendationPolicy{
         // fake implementation
         ArrayList<Item> items = new ArrayList<>();
         for(PurchaseList purchaseList: purchaseLists){
-            items.add(purchaseList.getItems().getFirst());
+            for (int i = 0; i < (int) (Math.random() * purchaseList.getItems().size()); i++) {
+                items.add(purchaseList.getItems().get((int) (Math.random() * purchaseList.getItems().size())));
+            }
         }
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
         LocalDateTime now = LocalDateTime.now();

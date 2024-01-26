@@ -5,6 +5,7 @@ import main.java.config.Config;
 import main.java.logger.Logger;
 import main.java.models.ECommerceController;
 import main.java.models.ItemCat;
+import main.java.models.database.IStore;
 import main.java.models.extsystems.adaptors.IItemInput;
 import main.java.models.extsystems.adaptors.ItemInputTUIAdaptor;
 import main.java.models.policies.IRecommendationPolicy;
@@ -19,6 +20,7 @@ public class Factory {
 
     public static Factory getInstance() {
         if(instance == null){
+
             instance = new Factory();
         }
         return instance;
@@ -29,6 +31,9 @@ public class Factory {
     private  ECommerceController eCommerceController;
     private  Config config;
     private  Logger logger;
+
+    private IStore store;
+
     public  IItemInput getItemInputAdaptor() throws YamlException, FileNotFoundException, ClassNotFoundException {
         if(itemInputAdaptor == null){
             // TODO: -add adaptor
@@ -73,5 +78,15 @@ public class Factory {
             logger = new Logger();
         }
         return logger;
+    }
+
+    public IStore getStorageUnit() throws YamlException, FileNotFoundException, ClassNotFoundException, NoSuchMethodException, InvocationTargetException, InstantiationException, IllegalAccessException {
+        if(store == null){
+            getConfig();
+            String className = (String) config.readAsObject(IStore.class.getSimpleName());
+            store = (IStore)
+                    Class.forName(className).getConstructor().newInstance();
+        }
+        return store;
     }
 }

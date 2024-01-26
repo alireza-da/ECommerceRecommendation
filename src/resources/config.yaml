@@ -1,5 +1,7 @@
 IItemInput: 'main.java.models.extsystems.adaptors.ItemInputTUIAdaptor'
 IRecommendationPolicy: 'main.java.models.policies.HistoryBasedRecomPolicy'
+IStore: "main.java.models.database.utils.HibernateUtils"
+
 Items: [
          "Bread", "Milk", "Egg"
 ]

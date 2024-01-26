@@ -1,11 +1,15 @@
 package main.java.models;
 
 
+import main.java.models.states.eccontroller.ECControllerState;
+import main.java.models.states.eccontroller.Normal;
+import main.java.models.states.eccontroller.Safe;
+
 public class ECommerceController {
     private RecommendationsCat recommendationsCat;
     private ItemCat itemCat;
     private int ID;
-
+    public ECControllerState state;
     public int getID() {
         return ID;
     }
@@ -25,6 +29,7 @@ public class ECommerceController {
     public ECommerceController() {
         this.itemCat = ItemCat.getInstance();
         this.recommendationsCat = RecommendationsCat.getInstance();
+        this.state = new Normal();
     }
 
     public ItemCat getItemCat() {
@@ -42,4 +47,7 @@ public class ECommerceController {
         return recommendationsCat;
     }
 
+    public void setState(ECControllerState ecControllerState) {
+        state = ecControllerState;
+    }
 }

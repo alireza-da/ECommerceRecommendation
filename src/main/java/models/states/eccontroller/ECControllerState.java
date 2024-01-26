@@ -1,5 +1,8 @@
 package main.java.models.states.eccontroller;
 
-public interface ECControllerState {
+import main.java.models.ECommerceController;
 
+public interface ECControllerState {
+    void onError(ECommerceController eCommerceController);
+    void onRecovery(ECommerceController eCommerceController);
 }

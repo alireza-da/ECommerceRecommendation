@@ -5,11 +5,12 @@ import main.java.models.states.purchase.PurchaseStarted;
 
 import java.math.BigInteger;
 import java.time.LocalDateTime;
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
 public class PurchaseList {
-    private List<Item> items;
+    private ArrayList<Item> items;
     private BigInteger total;
     private Integer totalDiscount;
     private LocalDateTime submitDate;
@@ -28,11 +29,11 @@ public class PurchaseList {
         this.state = new PurchaseStarted();
     }
 
-    public List<Item> getItems() {
+    public ArrayList<Item> getItems() {
         return items;
     }
 
-    public void setItems(List<Item> items) {
+    public void setItems(ArrayList<Item> items) {
         this.items = items;
     }
 

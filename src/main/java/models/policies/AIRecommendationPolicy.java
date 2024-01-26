@@ -14,7 +14,7 @@ public class AIRecommendationPolicy implements IRecommendationPolicy{
         // fake implementation
         ArrayList<Item> items = new ArrayList<>();
         for(PurchaseList purchaseList: purchaseLists){
-            items.add(purchaseList.getItems().getFirst());
+            items.add(purchaseList.getItems().get(0));
         }
         DateTimeFormatter dtf = DateTimeFormatter.ofPattern("yyyy/MM/dd HH:mm:ss");
         LocalDateTime now = LocalDateTime.now();

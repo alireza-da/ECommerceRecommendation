@@ -1,0 +1,11 @@
+package main.java.models.database.annotations;
+
+import javax.persistence.Entity;
+import javax.persistence.Table;
+import javax.persistence.UniqueConstraint;
+
+@Entity
+@Table(name="Recommendation",
+        uniqueConstraints={@UniqueConstraint(columnNames={"ID"})})
+public class RecommendationMapper {
+}

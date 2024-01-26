@@ -42,7 +42,7 @@ public class TestRecommendation {
         user.getPurchaseHistory().add(purchaseList);
 
         Assert.assertEquals(user.getPurchaseHistory().size(), 1);
-        Assert.assertEquals(user.getPurchaseHistory().getFirst().getItems().size(), 3);
+        Assert.assertEquals(user.getPurchaseHistory().get(0).getItems().size(), 3);
 
         purchaseList.finishPurchase();
         Assert.assertEquals(purchaseList.getState().getClass(), PurchaseFinished.class);

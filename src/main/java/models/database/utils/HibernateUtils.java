@@ -2,13 +2,16 @@ package main.java.models.database.utils;
 
 import java.util.Properties;
 
+import main.java.models.database.IStore;
+import org.hibernate.Session;
 import org.hibernate.SessionFactory;
+import org.hibernate.Transaction;
 import org.hibernate.boot.registry.StandardServiceRegistryBuilder;
 import org.hibernate.cfg.Configuration;
 import org.hibernate.service.ServiceRegistry;
 
 
-public class HibernateUtils {
+public class HibernateUtils implements IStore {
 
     //XML based configuration
     private static SessionFactory sessionFactory;
@@ -24,14 +27,13 @@ public class HibernateUtils {
             // Create the SessionFactory from hibernate.cfg.xml
             Configuration configuration = new Configuration();
             configuration.configure("resources/hibernate.cfg.xml");
+
             System.out.println("Hibernate Configuration loaded");
 
             ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties()).build();
             System.out.println("Hibernate serviceRegistry created");
 
-            SessionFactory sessionFactory = configuration.buildSessionFactory(serviceRegistry);
-
-            return sessionFactory;
+            return configuration.buildSessionFactory(serviceRegistry);
         }
         catch (Throwable ex) {
             // Make sure you log the exception, as it might be swallowed
@@ -50,9 +52,7 @@ public class HibernateUtils {
             ServiceRegistry serviceRegistry = new StandardServiceRegistryBuilder().applySettings(configuration.getProperties()).build();
             System.out.println("Hibernate Annotation serviceRegistry created");
 
-            SessionFactory sessionFactory = configuration.buildSessionFactory(serviceRegistry);
-
-            return sessionFactory;
+            return configuration.buildSessionFactory(serviceRegistry);
         }
         catch (Throwable ex) {
             // Make sure you log the exception, as it might be swallowed
@@ -108,4 +108,31 @@ public class HibernateUtils {
         return sessionJavaConfigFactory;
     }
 
+    @Override
+    public Object get(int ID, Class c) {
+        // Open a session
+        Session session = HibernateUtils.getSessionFactory().openSession();
+        // Begin a transaction
+        Transaction transaction = session.beginTransaction();
+        // Retrieve the object using the primary key
+        Object u = session.get(c, 1);
+        // Commit the transaction
+        transaction.commit();
+        // Close the session
+        session.close();
+        return u;
+    }
+
+    @Override
+    public void put(Object o) throws Exception {
+        Session session = HibernateUtils.getSessionFactory().getCurrentSession();
+        session.beginTransaction();
+        try{
+            session.save(o);
+            session.getTransaction().commit();
+        }catch (Exception e) {
+            throw new Exception(e.getMessage());
+        }
+        HibernateUtils.getSessionFactory().close();
+    }
 }

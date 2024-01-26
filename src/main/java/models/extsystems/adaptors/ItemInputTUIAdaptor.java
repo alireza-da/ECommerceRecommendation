@@ -15,7 +15,7 @@ public class ItemInputTUIAdaptor implements IItemInput{
 
     @Override
     public String scanItemName() throws IOException {
-        return tui.getInput("ITEM NAME: ");
+        return tui.getInput("ITEM NAME");
     }
 
     @Override

@@ -1,0 +1,18 @@
+<?xml version="1.0"?>
+<!DOCTYPE hibernate-mapping PUBLIC "-//Hibernate/Hibernate Mapping DTD 3.0//EN"
+        "https://hibernate.org/dtd/hibernate-mapping-3.0.dtd">
+
+<hibernate-mapping>
+    <class name="main.java.models.PurchaseList" table="Purchase">
+        <id name="ID" type="int">
+            <column name="ID" />
+            <generator class="increment" />
+        </id>
+        <property name="total" type="java.lang.Integer">
+            <column name="TOTAL" />
+        </property>
+        <property name="totalDiscount" type="java.lang.Integer">
+            <column name="TOTALDISCOUNT" />
+        </property>
+    </class>
+</hibernate-mapping>

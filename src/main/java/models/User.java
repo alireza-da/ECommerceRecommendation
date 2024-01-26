@@ -39,7 +39,15 @@ public class User {
         this.name = name;
     }
 
+    public User() {
+        setPurchaseHistory(new ArrayList<>());
+    }
+
     public int getID() {
         return ID;
+    }
+
+    public void setID(int ID) {
+        this.ID = ID;
     }
 }
